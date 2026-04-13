@@ -1,4 +1,10 @@
-export type Country = 'NL' | 'DE' | 'BE' | 'AT';
+export type Country = 'PL' | 'NL' | 'DE' | 'BE' | 'AT';
+
+export type WelderCountry =
+  'PL' | 'UA' | 'BY' | 'RU' | 'NL' | 'DE' | 'BE' | 'AT' | 'OTHER';
+
+export type ResponseSource = 'website' | 'telegram' | 'facebook' | 'direct';
+
 export type WeldingType = 'MIG/MAG' | 'TIG' | 'MMA' | 'OTHER';
 
 export interface Agency {
@@ -29,6 +35,20 @@ export interface Job {
   featured: boolean;
   telegram_posted: boolean;
   created_at: string;
+}
+
+export interface JobResponse {
+  id: string;
+  job_id: string;
+  response_date: string;
+  welder_country: WelderCountry | null;
+  welder_experience_years: number | null;
+  welder_welding_types: string[] | null;
+  welder_has_iso_9606: boolean | null;
+  welder_has_vca: boolean | null;
+  source: ResponseSource | null;
+  agency_notified: boolean;
+  notification_sent_at: string | null;
 }
 
 export type JobWithAgency = Job & { agency: Agency };
